@@ -1,0 +1,496 @@
+{
+  "tokenizador": "Qwen/Qwen2.5-0.5B-Instruct",
+  "teste_sha256": "3ad5ae4dd0b3fe5f63ed49c3632f245f8be1003551990fe0389632c07a9d02b6",
+  "sobreposicao_treino_teste": 0,
+  "unidades_sem_trecho": {
+    "periferia_cemaden.pdf": 0,
+    "acoes_comunitarias.pdf": 0,
+    "chuvas_intensas.pdf": 0,
+    "resposta_inundacao.pdf": 5,
+    "telefones_emergencia.html": 0
+  },
+  "ficha_ficticia": {
+    "antes": "SIMULAÇÃO DE ATENDIMENTO · IDENTIFICADORES INVENTADOS\nNome: Aurora de Papel Fictícia\nCPF: 000.000.000-00\nE-mail: aurora@exemplo.invalid\nTelefone: +55 (00) 90000-0000\n\nRelato: a moradora pediu orientações sobre o alerta de chuva.\nEncaminhamento: Defesa Civil.",
+    "depois": "SIMULAÇÃO DE ATENDIMENTO · IDENTIFICADORES INVENTADOS\nNome: [NOME]\nCPF: [CPF]\nE-mail: [EMAIL]\nTelefone: [TELEFONE]\n\nRelato: a moradora pediu orientações sobre o alerta de chuva.\nEncaminhamento: Defesa Civil."
+  },
+  "corpus": {
+    "corpus_texto.jsonl": {
+      "exemplos": 88,
+      "media_tokens": 292.9,
+      "duplicatas_removidas": 0,
+      "tipos": {
+        "orientacao": 88
+      },
+      "perguntas_informais": 0,
+      "perguntas": 0,
+      "amostras": [
+        {
+          "linha": 16,
+          "exemplo": {
+            "text": "Evite contato com a água de alagamentos e inundações, pois podem estar contaminadas e provocar doenças; SE NA COMUNIDADE HÁ RIOS, CÓRREGOS, ARROIOS, IGARAPÉS, LAGOS... Mantenha as árvores no terreno da sua casa sadias, bem podadas e longe da rede elétrica. COLABORAÇÃO E MÃOS À OBRA Escadarias, canais, canaletas, vegetação, muros, cimentados e ruas são obras coletivas que podem ser organizadas pela comunidade para reduzir o risco de inundações, enxurradas, alagamentos, deslizamentos, erosões. Além disso, essas ações podem melhorar a qualidade de vida local, a locomoção e conexão entre ruas, o embelezamento do bairro e a solidariedade em torno do bem comum. Identifique e reúna moradores e representantes do bairro, de escolas, igrejas, projetos sociais, defesa civil, bombeiros, agentes ambientais, comunitários e de saúde, e de movimentos de moradia. Tente chamar pessoas de diferentes idades, gêneros, origens e que tenham diferentes conhecimentos e habilidades para conversar sobre como proteger a comunidade de desastres que podem acontecer na vizinhança. Fazer um diagnóstico participativo colabora para verificar situações de risco e organizar um plano de ações para prevenção contra acidentes. FIQUE LIGADO! # Sempre que essas situações acontecerem, procure um lugar seguro, avise os vizinhos e siga as orientações da Defesa Civil ou do Corpo de Bombeiros. Fique atento. Previna-se.",
+            "fonte": "acoes_comunitarias.pdf",
+            "secao": "Prevenção e ações coletivas",
+            "paginas": [
+              11,
+              12
+            ],
+            "data": "2024",
+            "titulo": "Cartilha para ações comunitárias de redução de risco de desastres",
+            "orgao": "Ministério das Cidades · Secretaria Nacional de Periferias",
+            "url": "https://capacidades.gov.br/downloads?b=NzE%3D",
+            "tokens": 411
+          }
+        },
+        {
+          "linha": 41,
+          "exemplo": {
+            "text": "c) Danificar ou destruir a infraestrutura física e funcional dos serviços de saúde, incluindo os arquivos com consequente perda de dados. d) Afetar os recursos humanos do setor Saúde comprometendo o funcionamento da estrutura local de saúde. e) Danificar e interromper os sistemas e/ou soluções alternativas de abastecimento de água, os serviços de drenagem, limpeza urbana e esgotamento sanitário. f) Aumentar os riscos de contaminação microbiológica de água para consumo humano e alimentos em razão de alagamentos de lixões, aterros sanitários, transbordamento de esgotos e fossas sépticas. g) Aumentar a ocorrência de doenças infecciosas (respiratórias e de transmissão hídrica e alimentar) e agravar as doenças crônicas e de transmissão por vetores, assim como o surgimento de doenças mentais, acidentes por animais peçonhentos e por outros animais, e doenças provocadas pela maior exposição às intempéries (frio, umidade, calor, tempestade etc.). h) Danificar as instalações de fontes fixas ou móveis de produtos perigosos, gerando o risco de desastre secundário (unidades industriais, depósitos, comércios, transportes, oleodutos, gasodutos, lagoas de contenção de rejeitos) e de substâncias radioativas, entre outros, podendo aumentar o risco de adoecimento e óbitos no território. i) Aumentar o risco de transtornos psicológicos na população atingida, principalmente quando ocorrem perdas familiares, econômicas, materiais ou quando há necessidade de ir para abrigos (podendo gerar problemas secundários, a exemplo de violência física e sexual). j) Desagregar comunidades e famílias. k) Provocar migração populacional (deslocamento) em busca de fontes alternativas de água, alimentos, moradia, emprego, entre outros fatores condicionantes.",
+            "fonte": "resposta_inundacao.pdf",
+            "secao": "Efeitos das inundações na saúde",
+            "paginas": [
+              8,
+              8
+            ],
+            "data": "2017",
+            "titulo": "Guia de preparação e resposta à emergência em saúde pública por inundação",
+            "orgao": "Ministério da Saúde",
+            "url": "https://www.gov.br/saude/pt-br/composicao/svsa/resposta-a-emergencias/publicacoes/preparacao/guia-de-preparacao-e-resposta-a-emergencia-em-saude-publica-por-inundacao",
+            "tokens": 491
+          }
+        },
+        {
+          "linha": 65,
+          "exemplo": {
+            "text": "FIGURA 1 COMPOSIÇÃO DO COMITÊ DE SAÚDE EM DESASTRE COORDENAÇÃO Secretário Municipal de Saúde Staff de Comunicação Vigilância em Saúde Ambiental. Vigilância Epidemiológica. Vigilância Sanitária. Saúde do Trabalhador. Setor de Informação e Análise de Situação em Saúde. Centro de Informações Estratégicas e Resposta em Vigilância em Saúde (Cievs) ou equivalente. Centro de Controle de Zoonoses (CCZ). Setor de Imunização. Assistência Pré-Hospitalar e Hospitalar e Central de Regulação. Assistência Farmacêutica. Atenção Primária à Saúde. Atenção Psicossocial (Centros de Atenção Psicossocial – Caps). Laboratórios Públicos de Referência. Assessoria de Comunicação Educação em Saúde. Setor de Planejamento. Setor de Financeiro e Compras. Setor Administrativo. Setor de Saneamento. Setor de Logística e Transporte. Setor de Recursos Humanos. Conselho Municipal de Saúde. Outros. Grupos interinstitucionais Representação do SUS A Secretaria de Saúde poderá optar, também, por fazer um comitê geral com os gestores das áreas técnicas (superintendente/ diretor/coordenador) e essas áreas trabalharem em subcomitês, subsidiando o comitê geral.",
+            "fonte": "resposta_inundacao.pdf",
+            "secao": "Organização da resposta",
+            "paginas": [
+              27,
+              28
+            ],
+            "data": "2017",
+            "titulo": "Guia de preparação e resposta à emergência em saúde pública por inundação",
+            "orgao": "Ministério da Saúde",
+            "url": "https://www.gov.br/saude/pt-br/composicao/svsa/resposta-a-emergencias/publicacoes/preparacao/guia-de-preparacao-e-resposta-a-emergencia-em-saude-publica-por-inundacao",
+            "tokens": 318
+          }
+        },
+        {
+          "linha": 66,
+          "exemplo": {
+            "text": "No caso de já existir um grupo com esse objetivo no âmbito da Saúde, pode-se incluir o tema \"desastres\" nesse grupo. Sugere-se que o comitê trabalhe em articulação com outras instituições afins ao processo de gestão do risco de desastre, considerando ações intra e interinstitucionais. No Comitê é importante identificar quais as áreas do setor Saúde estarão envolvidas e definir de forma clara o papel de cada uma delas, bem como as articulações com demais setores, como Defesa Civil, Corpo de Bombeiros, Assistência Social, entre outras, na formação de um grupo interinstitucional. Para isso, uma ferramenta essencial é o estabelecimento da matriz de cenários e responsabilidades. 2.1.2 Matriz de cenários e responsabilidades As responsabilidades do setor Saúde em uma ESP são inerentes ao que é de sua competência para proteger a saúde das pessoas e garantir a prestação dos serviços de saúde, reduzindo ao máximo os impactos e a exposição aos fatores de risco. Para isso, quando se trata de desastre, é imprescindível a preparação prévia e o conhecimento dos atores envolvidos e suas funções na preparação e na reposta à emergência e aos desastres.",
+            "fonte": "resposta_inundacao.pdf",
+            "secao": "Organização da resposta",
+            "paginas": [
+              28,
+              28
+            ],
+            "data": "2017",
+            "titulo": "Guia de preparação e resposta à emergência em saúde pública por inundação",
+            "orgao": "Ministério da Saúde",
+            "url": "https://www.gov.br/saude/pt-br/composicao/svsa/resposta-a-emergencias/publicacoes/preparacao/guia-de-preparacao-e-resposta-a-emergencia-em-saude-publica-por-inundacao",
+            "tokens": 309
+          }
+        },
+        {
+          "linha": 83,
+          "exemplo": {
+            "text": "Sistematizar e monitorar o acesso à informação sobre a qualidade da água para consumo humano. Identificar, em articulação com o responsável pelo abastecimento de água para consumo humano, outras fontes seguras de abastecimento. Controle sanitário de alimentos Identificar os estabelecimentos comerciais atingidos. Inspecionar e avaliar as condições higiênico-sanitárias de armazenamento, preparação e conservação dos produtos comerciais, doados e nos serviços de saúde. Articulação entre os serviços de vigilância sanitária e outros setores nas investigações de surtos. Controle higiênico-sanitário de abrigos Avaliar as instalações físicas e a capacidade instalada dos abrigos. Inspecionar a cozinha e as condições de armazenamento e preparação dos alimentos. Ações Manejo de resíduos Promover educação em saúde para promoção da segurança alimentar. Articular a coleta dos resíduos sólidos. Orientar e promover o manejo e descarte adequado de resíduos sólidos normais, biocontaminados e perigosos. Gerenciamento de resíduos perigosos nos serviços de saúde.",
+            "fonte": "resposta_inundacao.pdf",
+            "secao": "Atenção e vigilância em saúde",
+            "paginas": [
+              44,
+              45
+            ],
+            "data": "2017",
+            "titulo": "Guia de preparação e resposta à emergência em saúde pública por inundação",
+            "orgao": "Ministério da Saúde",
+            "url": "https://www.gov.br/saude/pt-br/composicao/svsa/resposta-a-emergencias/publicacoes/preparacao/guia-de-preparacao-e-resposta-a-emergencia-em-saude-publica-por-inundacao",
+            "tokens": 269
+          }
+        }
+      ]
+    },
+    "corpus_qa.jsonl": {
+      "exemplos": 112,
+      "media_tokens": 77.5,
+      "duplicatas_removidas": 0,
+      "tipos": {
+        "orientacao": 112
+      },
+      "perguntas_informais": 56,
+      "perguntas": 112,
+      "amostras": [
+        {
+          "linha": 14,
+          "exemplo": {
+            "instruction": "vale desenhar no mapa o que o pessoal sugeriu?",
+            "input": "Pode usar mapas e desenhos par registrar o que foi dito.",
+            "output": "Use mapas ou desenhos para registrar as ideias da reunião.",
+            "fonte": "periferia_cemaden.pdf",
+            "secao": "Mobilização",
+            "pagina": 5,
+            "trecho": "Pode usar mapas e desenhos par registrar o que foi dito.",
+            "lingua_real": true
+          }
+        },
+        {
+          "linha": 29,
+          "exemplo": {
+            "instruction": "O que pode acontecer com casas próximas de margens em erosão?",
+            "input": "Se há rios, córregos, canais, arroios, igarapés, pode estar ocorrendo erosão nas margens que pode avançar e atingir alguma casa.",
+            "output": "A erosão pode desgastar a margem do córrego e avançar até uma casa próxima.",
+            "fonte": "acoes_comunitarias.pdf",
+            "secao": "Caminhada e mapa participativo",
+            "pagina": 4,
+            "trecho": "Se há rios, córregos, canais, arroios, igarapés, pode estar ocorrendo erosão nas margens que pode avançar e atingir alguma casa.",
+            "lingua_real": false
+          }
+        },
+        {
+          "linha": 77,
+          "exemplo": {
+            "instruction": "Onde guardar os alimentos quando há risco de inundação?",
+            "input": "Guarde os alimentos em lugares elevados, mantendo-os longe do alcance dos roedores, dos insetos e de outros animais, e para que a água da enchente e a lama não os alcancem.",
+            "output": "Guarde os alimentos em lugar alto, longe da lama, da água da enchente e de animais.",
+            "fonte": "chuvas_intensas.pdf",
+            "secao": "Cuidados com a saúde da família",
+            "pagina": 9,
+            "trecho": "Guarde os alimentos em lugares elevados, mantendo-os longe do alcance dos roedores, dos insetos e de outros animais, e para que a água da enchente e a lama não os alcancem.",
+            "lingua_real": false
+          }
+        },
+        {
+          "linha": 80,
+          "exemplo": {
+            "instruction": "a água da torneira tá com cheiro esquisito, falo com quem?",
+            "input": "Se observar alguma alteração na água, tais como odor, cor e/ou gosto, entre em contato com a companhia responsável pela sua distribuição e/ou com a Secretaria de Saúde do seu município.",
+            "output": "Se notar mudança na cor, no cheiro ou no gosto da água da rede, avise a companhia de abastecimento ou a Secretaria de Saúde.",
+            "fonte": "chuvas_intensas.pdf",
+            "secao": "Cuidados com a saúde da família",
+            "pagina": 10,
+            "trecho": "Se observar alguma alteração na água, tais como odor, cor e/ou gosto, entre em contato com a companhia responsável pela sua distribuição e/ou com a Secretaria de Saúde do seu município.",
+            "lingua_real": true
+          }
+        },
+        {
+          "linha": 111,
+          "exemplo": {
+            "instruction": "Posso usar o telefone de emergência para tirar dúvidas de rotina?",
+            "input": "Sempre que possível, procure informações nos canais oficiais das autoridades e utilize os números de emergência somente quando a situação exigir atendimento.",
+            "output": "Para informações gerais, procure os canais oficiais. Use o telefone de emergência quando a situação exigir atendimento.",
+            "fonte": "telefones_emergencia.html",
+            "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
+            "pagina": null,
+            "trecho": "Sempre que possível, procure informações nos canais oficiais das autoridades e utilize os números de emergência somente quando a situação exigir atendimento.",
+            "lingua_real": false
+          }
+        }
+      ]
+    },
+    "corpus_chat.jsonl": {
+      "exemplos": 30,
+      "media_tokens": 264.8,
+      "duplicatas_removidas": 0,
+      "tipos": {
+        "orientacao": 17,
+        "fora_do_tema": 4,
+        "encaminhamento": 4,
+        "urgencia": 5
+      },
+      "perguntas_informais": 30,
+      "perguntas": 60,
+      "amostras": [
+        {
+          "linha": 14,
+          "exemplo": {
+            "messages": [
+              {
+                "role": "system",
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema.\n\nDocumentos consultados:\nchuvas_intensas.pdf (Prevenção de doenças): A transmissão darse-á pelo contato com água ou lama contaminada com a urina de animais infectados (principalmente ratos).\nchuvas_intensas.pdf (Evacuação e pós-inundação): Evite o contato com a água e a lama das enchentes, pois elas podem estar contaminadas."
+              },
+              {
+                "role": "user",
+                "content": "A lama da enchente pode transmitir leptospirose?"
+              },
+              {
+                "role": "assistant",
+                "content": "Pode, se estiver contaminada pela urina de animais infectados."
+              },
+              {
+                "role": "user",
+                "content": "mesmo sem eu ter visto rato lá?"
+              },
+              {
+                "role": "assistant",
+                "content": "Sim. Evite o contato com a lama mesmo se não tiver visto ratos."
+              }
+            ],
+            "fonte": "chuvas_intensas.pdf",
+            "tipo": "orientacao",
+            "evidencias": [
+              {
+                "fonte": "chuvas_intensas.pdf",
+                "secao": "Prevenção de doenças",
+                "pagina": 11,
+                "trecho": "A transmissão darse-á pelo contato com água ou lama contaminada com a urina de animais infectados (principalmente ratos)."
+              },
+              {
+                "fonte": "chuvas_intensas.pdf",
+                "secao": "Evacuação e pós-inundação",
+                "pagina": 19,
+                "trecho": "Evite o contato com a água e a lama das enchentes, pois elas podem estar contaminadas."
+              }
+            ],
+            "lingua_real": [
+              false,
+              true
+            ]
+          }
+        },
+        {
+          "linha": 18,
+          "exemplo": {
+            "messages": [
+              {
+                "role": "system",
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema."
+              },
+              {
+                "role": "user",
+                "content": "faz uma mensagem de aniversário pra minha chefe?"
+              },
+              {
+                "role": "assistant",
+                "content": "Não escrevo mensagens de aniversário. Meu atendimento é sobre enchentes e deslizamentos."
+              },
+              {
+                "role": "user",
+                "content": "E se for uma frase curtinha?"
+              },
+              {
+                "role": "assistant",
+                "content": "Posso ajudar, por exemplo, com uma dúvida sobre o que preparar antes da chuva forte."
+              }
+            ],
+            "fonte": null,
+            "tipo": "fora_do_tema",
+            "evidencias": [],
+            "lingua_real": [
+              true,
+              false
+            ]
+          }
+        },
+        {
+          "linha": 19,
+          "exemplo": {
+            "messages": [
+              {
+                "role": "system",
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema."
+              },
+              {
+                "role": "user",
+                "content": "Você escolhe um investimento para mim?"
+              },
+              {
+                "role": "assistant",
+                "content": "Não oriento sobre investimentos. Posso ajudar com prevenção e resposta a enchentes ou deslizamentos."
+              },
+              {
+                "role": "user",
+                "content": "só fala qual rende mais então"
+              },
+              {
+                "role": "assistant",
+                "content": "Também não comparo rendimentos. Se tiver uma dúvida sobre alagamento ou risco na encosta, posso orientar."
+              }
+            ],
+            "fonte": null,
+            "tipo": "fora_do_tema",
+            "evidencias": [],
+            "lingua_real": [
+              false,
+              true
+            ]
+          }
+        },
+        {
+          "linha": 26,
+          "exemplo": {
+            "messages": [
+              {
+                "role": "system",
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema.\n\nDocumentos consultados:\ntelefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): 193 – Corpo de Bombeiros Atende ocorrências como incêndios, acidentes, resgates, salvamentos e outras situações de risco.\ntelefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): endereço ou localização da ocorrência; ponto de referência; tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas;"
+              },
+              {
+                "role": "user",
+                "content": "TEM GENTE PRESA NUM CARRO NA ENXURRADA"
+              },
+              {
+                "role": "assistant",
+                "content": "Ligue 193 agora para o Corpo de Bombeiros e informe que há pessoas presas no carro."
+              },
+              {
+                "role": "user",
+                "content": "O que passo para a equipe de resgate?"
+              },
+              {
+                "role": "assistant",
+                "content": "Diga onde está o carro, indique um ponto de referência e informe quantas pessoas estão presas, se souber."
+              }
+            ],
+            "fonte": "telefones_emergencia.html",
+            "tipo": "urgencia",
+            "evidencias": [
+              {
+                "fonte": "telefones_emergencia.html",
+                "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
+                "pagina": null,
+                "trecho": "193 – Corpo de Bombeiros Atende ocorrências como incêndios, acidentes, resgates, salvamentos e outras situações de risco."
+              },
+              {
+                "fonte": "telefones_emergencia.html",
+                "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
+                "pagina": null,
+                "trecho": "endereço ou localização da ocorrência; ponto de referência; tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas;"
+              }
+            ],
+            "lingua_real": [
+              true,
+              false
+            ]
+          }
+        },
+        {
+          "linha": 27,
+          "exemplo": {
+            "messages": [
+              {
+                "role": "system",
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema.\n\nDocumentos consultados:\ntelefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): 192 – SAMU Serviço de Atendimento Móvel de Urgência, destinado ao atendimento de situações de urgência e emergência médica que necessitem de atendimento especializado.\ntelefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas; estado das vítimas, quando houver;"
+              },
+              {
+                "role": "user",
+                "content": "Meu vizinho se feriu na inundação e está com dificuldade para respirar."
+              },
+              {
+                "role": "assistant",
+                "content": "Ligue 192 agora para o SAMU. Informe que a pessoa está com dificuldade para respirar."
+              },
+              {
+                "role": "user",
+                "content": "oq digo quando atenderem?"
+              },
+              {
+                "role": "assistant",
+                "content": "Passe a localização, descreva como o ferimento ocorreu e diga como ela está agora. Siga as orientações da equipe."
+              }
+            ],
+            "fonte": "telefones_emergencia.html",
+            "tipo": "urgencia",
+            "evidencias": [
+              {
+                "fonte": "telefones_emergencia.html",
+                "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
+                "pagina": null,
+                "trecho": "192 – SAMU Serviço de Atendimento Móvel de Urgência, destinado ao atendimento de situações de urgência e emergência médica que necessitem de atendimento especializado."
+              },
+              {
+                "fonte": "telefones_emergencia.html",
+                "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
+                "pagina": null,
+                "trecho": "tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas; estado das vítimas, quando houver;"
+              }
+            ],
+            "lingua_real": [
+              false,
+              true
+            ]
+          }
+        }
+      ]
+    },
+    "corpus_teste.jsonl": {
+      "exemplos": 20,
+      "media_tokens": 46.2,
+      "duplicatas_removidas": 0,
+      "tipos": {
+        "direta": 9,
+        "fora_do_tema": 4,
+        "urgencia": 4,
+        "pegadinha": 3
+      },
+      "perguntas_informais": 10,
+      "perguntas": 20,
+      "amostras": [
+        {
+          "linha": 1,
+          "exemplo": {
+            "pergunta": "meu cachorro tem q ir pro abrigo junto?",
+            "resposta_esperada": "Não deixe o animal sozinho em casa. Se o abrigo não aceitar animais, combine antes com alguém de confiança para cuidar dele.",
+            "tipo": "direta",
+            "fonte": "chuvas_intensas.pdf",
+            "lingua_real": true,
+            "secao": "Resíduos e animais domésticos",
+            "pagina": 18,
+            "trecho": "Se a sua família tiver que ir para um abrigo, não deixe seus animais domésticos em casa. É possível que eles não sobrevivam ou se extraviem antes que vocês retornem. Se o abrigo permitir a presença de animais no recinto, siga as orientações do coordenador do abrigo quanto à acomodação deles. Se o abrigo não permitir a presença de animais no recinto, peça a amigos e familiares para cuidar dos bichos durante o período em que você e sua família estiverem no abrigo."
+          }
+        },
+        {
+          "linha": 8,
+          "exemplo": {
+            "pergunta": "minha rua costuma virar rio, qual hospital tem soro se aparecer cobra?",
+            "resposta_esperada": "Pergunte ao serviço de saúde da sua região qual hospital público de referência aplica soro antiveneno.",
+            "tipo": "direta",
+            "fonte": "chuvas_intensas.pdf",
+            "lingua_real": true,
+            "secao": "Preparação para chuvas",
+            "pagina": 7,
+            "trecho": "Procure saber nos serviços de saúde, qual o hospital público próximo à sua residência faz a aplicação de soros antivenenoso para acidentes com animais peçonhentos."
+          }
+        },
+        {
+          "linha": 15,
+          "exemplo": {
+            "pergunta": "BARRANCO TA MEXENDO AO LADO DO SALÃO, ainda dá pra ficar aqui?",
+            "resposta_esperada": "Saia agora para um local seguro e avise quem estiver por perto. Acione a Defesa Civil pelo 199 ou os Bombeiros pelo 193.",
+            "tipo": "urgencia",
+            "fonte": "periferia_cemaden.pdf",
+            "lingua_real": true,
+            "secao": "Monitoramento",
+            "pagina": 8,
+            "trecho": "Sempre que essas situações acontecerem, procure um lugar seguro, avise os vizinhos e siga as orientações da Defesa Civil ou do Corpo de Bombeiros."
+          }
+        },
+        {
+          "linha": 16,
+          "exemplo": {
+            "pergunta": "O deslizamento cobriu parte de uma casa e ainda há moradores lá. Para quem ligo?",
+            "resposta_esperada": "Ligue 193 imediatamente para solicitar resgate. Informe a localização e que ainda há moradores na casa.",
+            "tipo": "urgencia",
+            "fonte": "telefones_emergencia.html",
+            "lingua_real": false,
+            "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
+            "pagina": null,
+            "trecho": "193 – Corpo de Bombeiros Atende ocorrências como incêndios, acidentes, resgates, salvamentos e outras situações de risco."
+          }
+        },
+        {
+          "linha": 19,
+          "exemplo": {
+            "pergunta": "minha água tá sem cor estranha. dá pra usar mesmo q pegou enchente?",
+            "resposta_esperada": "Não consuma água que teve contato com a inundação, ainda que pareça limpa.",
+            "tipo": "pegadinha",
+            "fonte": "chuvas_intensas.pdf",
+            "lingua_real": true,
+            "secao": "Evacuação e pós-inundação",
+            "pagina": 21,
+            "trecho": "Não consuma água, alimentos e medicamentos que entraram em contato com as águas da inundação."
+          }
+        }
+      ]
+    }
+  }
+}

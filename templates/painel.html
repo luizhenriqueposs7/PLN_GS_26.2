@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fábrica de Corpus CitizenTech</title>
+  <style>
+    :root { font: 17px/1.5 system-ui, sans-serif; color: #202126; background: #eeefef; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { background: #17181b; color: #fff; border-bottom: 6px solid #f67024; padding: 29px max(24px, calc((100% - 1000px) / 2)); }
+    h1 { margin: 3px 0; font-size: clamp(30px, 4vw, 50px); line-height: 1.15; letter-spacing: -.045em; }
+    h2 { margin: 0 0 .7em; font-size: 24px; letter-spacing: -.025em; }
+    p { margin: .4rem 0 .8rem; }
+    small { color: #ff914f; font: 700 14px system-ui; letter-spacing: .12em; }
+    main { max-width: 1048px; margin: 0 auto; padding: 24px; display: grid; gap: 18px; }
+    section { background: #fff; padding: 22px 26px; border: 1px solid #d6d8d8; }
+    label { display: block; font-weight: 650; margin-top: 12px; }
+    input, textarea, button { font: inherit; }
+    input { width: 100%; }
+    textarea { display: block; width: 100%; min-height: 52px; padding: 8px; border: 1px solid #959699; }
+    button { border: 1px solid #a7a8a8; padding: 7px 14px; margin: 14px 8px 0 0; cursor: pointer; }
+    button[value=gerar] { background: #f67024; border-color: #f67024; color: #141414; font-weight: 700; }
+    button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible { outline: 3px solid #175fc6; outline-offset: 2px; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f1f2f2; border-left: 4px solid #f67024; padding: 12px; font: 15px/1.55 ui-monospace, monospace; }
+    a { color: #923000; text-underline-offset: 3px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { text-align: left; border-bottom: 1px solid #d6d8d8; padding: 7px; }
+    .erro { border-left: 4px solid #ba301e; }
+    .grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 12px; }
+  </style>
+</head>
+<body>
+<header><small>GLOBAL SOLUTION · 2026.2</small><h1>Fábrica de Corpus CitizenTech</h1><p>Enchentes e deslizamentos · Da fonte pública ao JSONL</p></header>
+<main>
+  {% if erro %}<section class="erro" role="alert">{{ erro }}</section>{% endif %}
+  {% for nome, texto in previas %}
+  <section id="previa"><h2>Prévia anonimizada</h2><p>{{ nome }}</p><pre>{{ texto }}</pre></section>
+  {% endfor %}
+  {% if qualidade %}
+  <section id="resultado">
+    <h2>Corpus exportados</h2>
+    <table><thead><tr><th>Arquivo</th><th>Exemplos</th><th>Tokens médios</th><th>Duplicatas removidas</th></tr></thead>
+    <tbody>{% for nome, info in qualidade.corpus.items() %}
+    <tr><td><a href="{{ url_for('baixar', nome=nome) }}">{{ nome }}</a></td><td>{{ info.exemplos }}</td><td>{{ info.media_tokens }}</td><td>{{ info.duplicatas_removidas }}</td></tr>
+    {% endfor %}</tbody></table>
+    <p>Perguntas em comum entre treino e teste: <b>{{ qualidade.sobreposicao_treino_teste }}</b>. <a href="{{ url_for('baixar', nome='qualidade.json') }}">Estatísticas e amostras</a></p>
+    <details><summary>Ficha fictícia antes e depois</summary><div class="grade">
+      <pre>{{ qualidade.ficha_ficticia.antes }}</pre><pre>{{ qualidade.ficha_ficticia.depois }}</pre>
+    </div></details>
+  </section>
+  {% endif %}
+  <section>
+    <h2>Importar documentos</h2>
+    <form method="post" enctype="multipart/form-data">
+      <label for="documentos">Arquivos PDF, TXT, DOCX ou HTML</label>
+      <input id="documentos" name="documentos" type="file" accept=".pdf,.txt,.docx,.html,.htm" multiple>
+      <label for="texto">Ou cole texto para inspecionar</label>
+      <textarea id="texto" name="texto" rows="2"></textarea>
+      <button name="acao" value="inspecionar">Inspecionar e anonimizar</button>
+      <button name="acao" value="gerar">Gerar os quatro corpus</button>
+    </form>
+    <p>Deixe a seleção vazia para gerar com as cinco fontes incluídas ou envie as cópias oficiais listadas abaixo.</p>
+  </section>
+  <section><h2>Fontes da edição</h2><ul>
+    {% for fonte in fontes %}<li><a href="{{ fonte.url }}">{{ fonte.arquivo }}</a> · {{ fonte.data }}</li>{% endfor %}
+  </ul></section>
+</main>
+</body>
+</html>

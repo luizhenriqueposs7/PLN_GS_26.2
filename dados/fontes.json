@@ -1,0 +1,233 @@
+{
+  "fontes": [
+    {
+      "arquivo": "periferia_cemaden.pdf",
+      "titulo": "Periferia sem risco",
+      "orgao": "Ministério das Cidades · Secretaria Nacional de Periferias",
+      "data": "2024",
+      "url": "https://educacao.cemaden.gov.br/wp-content/uploads/2023/10/cartilhaperiferiasemrisco.pdf",
+      "paginas_arquivo": 12,
+      "sha256": "12c5e1171210451d0098769c55c287bcee299e02db0b0ca0f33e4ba7e34ccdcf",
+      "secoes": [
+        [
+          3,
+          4,
+          "Ações comunitárias"
+        ],
+        [
+          5,
+          5,
+          "Mobilização"
+        ],
+        [
+          6,
+          6,
+          "Identificação de perigos"
+        ],
+        [
+          7,
+          7,
+          "Plano de ação"
+        ],
+        [
+          8,
+          8,
+          "Monitoramento"
+        ]
+      ],
+      "preservar": [
+        "Mobilização",
+        "Organize uma reunião"
+      ],
+      "remover": [
+        "(?i)Acesse:\\s*https?://\\S+"
+      ]
+    },
+    {
+      "arquivo": "acoes_comunitarias.pdf",
+      "titulo": "Cartilha para ações comunitárias de redução de risco de desastres",
+      "orgao": "Ministério das Cidades · Secretaria Nacional de Periferias",
+      "data": "2024",
+      "url": "https://capacidades.gov.br/downloads?b=NzE%3D",
+      "paginas_arquivo": 14,
+      "sha256": "a6b1b7360a5b949b3e57f5a82c61de2448c7e4787d8c0690040e069e2a892905",
+      "secoes": [
+        [
+          2,
+          3,
+          "Risco e vulnerabilidade"
+        ],
+        [
+          4,
+          6,
+          "Caminhada e mapa participativo"
+        ],
+        [
+          7,
+          9,
+          "Drenagem e sinais de risco"
+        ],
+        [
+          10,
+          12,
+          "Prevenção e ações coletivas"
+        ]
+      ],
+      "preservar": [
+        "Podemos observar",
+        "Casa",
+        "Casas próximas da",
+        "Barreiras"
+      ]
+    },
+    {
+      "arquivo": "chuvas_intensas.pdf",
+      "titulo": "Cartilha de orientação à população no período de alerta de chuvas intensas",
+      "orgao": "Ministério da Saúde",
+      "data": "2017",
+      "url": "https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/enchentes/cartilha-de-orientacao-a-populacao-no-periodo-de-alerta-de-chuvas-intensas/@@download/file",
+      "paginas_arquivo": 23,
+      "sha256": "f27cbde296f8c1baf3438ea9f0e28457359acd62605601c84e7a6e9914fa220f",
+      "secoes": [
+        [
+          4,
+          7,
+          "Preparação para chuvas"
+        ],
+        [
+          8,
+          10,
+          "Cuidados com a saúde da família"
+        ],
+        [
+          11,
+          13,
+          "Prevenção de doenças"
+        ],
+        [
+          14,
+          17,
+          "Cuidados no lar"
+        ],
+        [
+          18,
+          18,
+          "Resíduos e animais domésticos"
+        ],
+        [
+          19,
+          22,
+          "Evacuação e pós-inundação"
+        ]
+      ],
+      "ignorar": [
+        "Cartilha de Orientação à População no Período de Alerta de Chuvas Intensas",
+        "SECRETARIA DE VIGILÂNCIA EM SAÚDE / MS"
+      ],
+      "preservar": [
+        "Disque-Intoxicação",
+        "Tétano",
+        "PNRS"
+      ]
+    },
+    {
+      "arquivo": "resposta_inundacao.pdf",
+      "titulo": "Guia de preparação e resposta à emergência em saúde pública por inundação",
+      "orgao": "Ministério da Saúde",
+      "data": "2017",
+      "url": "https://www.gov.br/saude/pt-br/composicao/svsa/resposta-a-emergencias/publicacoes/preparacao/guia-de-preparacao-e-resposta-a-emergencia-em-saude-publica-por-inundacao",
+      "paginas_arquivo": 54,
+      "sha256": "ac724004ee388cfa4b0395da769a630a6084b0aaa1457809496a92d6d327fcf0",
+      "secoes": [
+        [
+          3,
+          3,
+          "Apresentação"
+        ],
+        [
+          4,
+          5,
+          "Introdução"
+        ],
+        [
+          6,
+          9,
+          "Efeitos das inundações na saúde"
+        ],
+        [
+          10,
+          17,
+          "Gestão de riscos"
+        ],
+        [
+          18,
+          19,
+          "Território"
+        ],
+        [
+          20,
+          21,
+          "Análise de situação de saúde"
+        ],
+        [
+          22,
+          34,
+          "Organização da resposta"
+        ],
+        [
+          37,
+          50,
+          "Atenção e vigilância em saúde"
+        ]
+      ],
+      "preservar": [
+        "Desagregar",
+        "Cievs",
+        "Comitê de Saúde em Desastre",
+        "Insumos",
+        "Tétano",
+        "Continua",
+        "Soluções Alternativas Coletivas e Individuais"
+      ],
+      "remover": [
+        "\\s*\\([A-ZÀ-Ü][A-ZÀ-Ü .-]+,\\s*\\d{4}(?:,\\s*p\\.\\s*\\d+)?\\)",
+        "(?im)^Fonte: Adaptado de[^\\n]+\\n[^\\n]+",
+        "(?s)Eles estão\\s+disponíveis em <https?://[^>]+>\\."
+      ]
+    },
+    {
+      "arquivo": "telefones_emergencia.html",
+      "titulo": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
+      "orgao": "Ministério das Comunicações",
+      "data": "2026-09-11",
+      "url": "https://www.gov.br/mcom/pt-br/noticias/2026/setembro/emergencia-voce-sabe-para-quem-ligar-quando-precisa-de-ajuda",
+      "paginas_arquivo": null,
+      "sha256": "d46e669cc8478c73014a2feedb136b8870d2f10dc7126d5220946c98ae6fe3a5",
+      "ignorar": [
+        "Foto gerada por IA",
+        "Notícias",
+        "UTILIDADE PÚBLICA"
+      ],
+      "data_atualizacao": "2026-10-27"
+    }
+  ],
+  "aliases": {
+    "P": "periferia_cemaden.pdf",
+    "A": "acoes_comunitarias.pdf",
+    "C": "chuvas_intensas.pdf",
+    "R": "resposta_inundacao.pdf",
+    "E": "telefones_emergencia.html"
+  },
+  "excecoes": [
+    "Defesa Civil",
+    "Corpo de Bombeiros",
+    "Ministério da Saúde",
+    "Ministério das Cidades",
+    "Sistema Único de Saúde",
+    "Serviço de Atendimento Móvel de Urgência",
+    "Cemaden Educação",
+    "Lei Maria da Penha",
+    "Fiocruz",
+    "Política Nacional de Resíduos Sólidos"
+  ]
+}
