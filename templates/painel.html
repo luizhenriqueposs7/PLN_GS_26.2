@@ -55,8 +55,16 @@
     <form method="post" enctype="multipart/form-data">
       <label for="documentos">Arquivos PDF, TXT, DOCX ou HTML</label>
       <input id="documentos" name="documentos" type="file" accept=".pdf,.txt,.docx,.html,.htm" multiple>
-      <label for="texto">Ou cole texto para inspecionar</label>
+      <label for="texto">Ou cole texto de uma fonte pública</label>
       <textarea id="texto" name="texto" rows="2"></textarea>
+      <details>
+        <summary>Metadados para gerar com fontes novas</summary>
+        <p>Informe uma entrada para cada arquivo novo. Use <code>texto_colado.txt</code> para o texto colado.</p>
+        <label for="metadados">Metadados em JSON</label>
+        <textarea id="metadados" name="metadados" rows="3"
+          placeholder='[{"arquivo":"guia.txt","titulo":"Guia de prevenção","orgao":"Defesa Civil","url":"https://www.gov.br/guia","data":"2026-01"}]'></textarea>
+        <p>O ZIP inclui os quatro conjuntos. As fontes novas entram no corpus de texto para RAG. Perguntas e diálogos seguem a curadoria desta edição.</p>
+      </details>
       <button name="acao" value="inspecionar">Inspecionar e anonimizar</button>
       <button name="acao" value="gerar">Gerar os quatro corpus</button>
     </form>

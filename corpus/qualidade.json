@@ -16,7 +16,7 @@
   "corpus": {
     "corpus_texto.jsonl": {
       "exemplos": 88,
-      "media_tokens": 292.9,
+      "media_tokens": 293.0,
       "duplicatas_removidas": 0,
       "tipos": {
         "orientacao": 88
@@ -27,7 +27,7 @@
         {
           "linha": 16,
           "exemplo": {
-            "text": "Evite contato com a água de alagamentos e inundações, pois podem estar contaminadas e provocar doenças; SE NA COMUNIDADE HÁ RIOS, CÓRREGOS, ARROIOS, IGARAPÉS, LAGOS... Mantenha as árvores no terreno da sua casa sadias, bem podadas e longe da rede elétrica. COLABORAÇÃO E MÃOS À OBRA Escadarias, canais, canaletas, vegetação, muros, cimentados e ruas são obras coletivas que podem ser organizadas pela comunidade para reduzir o risco de inundações, enxurradas, alagamentos, deslizamentos, erosões. Além disso, essas ações podem melhorar a qualidade de vida local, a locomoção e conexão entre ruas, o embelezamento do bairro e a solidariedade em torno do bem comum. Identifique e reúna moradores e representantes do bairro, de escolas, igrejas, projetos sociais, defesa civil, bombeiros, agentes ambientais, comunitários e de saúde, e de movimentos de moradia. Tente chamar pessoas de diferentes idades, gêneros, origens e que tenham diferentes conhecimentos e habilidades para conversar sobre como proteger a comunidade de desastres que podem acontecer na vizinhança. Fazer um diagnóstico participativo colabora para verificar situações de risco e organizar um plano de ações para prevenção contra acidentes. FIQUE LIGADO! # Sempre que essas situações acontecerem, procure um lugar seguro, avise os vizinhos e siga as orientações da Defesa Civil ou do Corpo de Bombeiros. Fique atento. Previna-se.",
+            "text": "Mantenha as árvores no terreno da sua casa sadias, bem podadas e longe da rede elétrica. COLABORAÇÃO E MÃOS À OBRA Escadarias, canais, canaletas, vegetação, muros, cimentados e ruas são obras coletivas que podem ser organizadas pela comunidade para reduzir o risco de inundações, enxurradas, alagamentos, deslizamentos, erosões. Além disso, essas ações podem melhorar a qualidade de vida local, a locomoção e conexão entre ruas, o embelezamento do bairro e a solidariedade em torno do bem comum. Identifique e reúna moradores e representantes do bairro, de escolas, igrejas, projetos sociais, defesa civil, bombeiros, agentes ambientais, comunitários e de saúde, e de movimentos de moradia. Tente chamar pessoas de diferentes idades, gêneros, origens e que tenham diferentes conhecimentos e habilidades para conversar sobre como proteger a comunidade de desastres que podem acontecer na vizinhança. Fazer um diagnóstico participativo colabora para verificar situações de risco e organizar um plano de ações para prevenção contra acidentes. FIQUE LIGADO! # Sempre que essas situações acontecerem, procure um lugar seguro, avise os vizinhos e siga as orientações da Defesa Civil ou do Corpo de Bombeiros. Fique atento. Previna-se.",
             "fonte": "acoes_comunitarias.pdf",
             "secao": "Prevenção e ações coletivas",
             "paginas": [
@@ -38,7 +38,7 @@
             "titulo": "Cartilha para ações comunitárias de redução de risco de desastres",
             "orgao": "Ministério das Cidades · Secretaria Nacional de Periferias",
             "url": "https://capacidades.gov.br/downloads?b=NzE%3D",
-            "tokens": 411
+            "tokens": 356
           }
         },
         {
@@ -113,7 +113,7 @@
     },
     "corpus_qa.jsonl": {
       "exemplos": 112,
-      "media_tokens": 77.5,
+      "media_tokens": 78.8,
       "duplicatas_removidas": 0,
       "tipos": {
         "orientacao": 112
@@ -190,7 +190,7 @@
     },
     "corpus_chat.jsonl": {
       "exemplos": 30,
-      "media_tokens": 264.8,
+      "media_tokens": 285.5,
       "duplicatas_removidas": 0,
       "tipos": {
         "orientacao": 17,
@@ -207,7 +207,7 @@
             "messages": [
               {
                 "role": "system",
-                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema.\n\nDocumentos consultados:\nchuvas_intensas.pdf (Prevenção de doenças): A transmissão darse-á pelo contato com água ou lama contaminada com a urina de animais infectados (principalmente ratos).\nchuvas_intensas.pdf (Evacuação e pós-inundação): Evite o contato com a água e a lama das enchentes, pois elas podem estar contaminadas."
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e cite o número da evidência, como [1]. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema.\n\nDocumentos consultados:\n[1] chuvas_intensas.pdf (Prevenção de doenças): A transmissão darse-á pelo contato com água ou lama contaminada com a urina de animais infectados (principalmente ratos).\n[2] chuvas_intensas.pdf (Evacuação e pós-inundação): Evite o contato com a água e a lama das enchentes, pois elas podem estar contaminadas."
               },
               {
                 "role": "user",
@@ -215,7 +215,7 @@
               },
               {
                 "role": "assistant",
-                "content": "Pode, se estiver contaminada pela urina de animais infectados."
+                "content": "Pode, se estiver contaminada pela urina de animais infectados. [1]"
               },
               {
                 "role": "user",
@@ -223,19 +223,21 @@
               },
               {
                 "role": "assistant",
-                "content": "Sim. Evite o contato com a lama mesmo se não tiver visto ratos."
+                "content": "Sim. Evite o contato com a lama mesmo se não tiver visto ratos. [1] [2]"
               }
             ],
             "fonte": "chuvas_intensas.pdf",
             "tipo": "orientacao",
             "evidencias": [
               {
+                "id": 1,
                 "fonte": "chuvas_intensas.pdf",
                 "secao": "Prevenção de doenças",
                 "pagina": 11,
                 "trecho": "A transmissão darse-á pelo contato com água ou lama contaminada com a urina de animais infectados (principalmente ratos)."
               },
               {
+                "id": 2,
                 "fonte": "chuvas_intensas.pdf",
                 "secao": "Evacuação e pós-inundação",
                 "pagina": 19,
@@ -254,7 +256,7 @@
             "messages": [
               {
                 "role": "system",
-                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema."
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e cite o número da evidência, como [1]. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema."
               },
               {
                 "role": "user",
@@ -288,7 +290,7 @@
             "messages": [
               {
                 "role": "system",
-                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema."
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e cite o número da evidência, como [1]. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema."
               },
               {
                 "role": "user",
@@ -322,7 +324,7 @@
             "messages": [
               {
                 "role": "system",
-                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema.\n\nDocumentos consultados:\ntelefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): 193 – Corpo de Bombeiros Atende ocorrências como incêndios, acidentes, resgates, salvamentos e outras situações de risco.\ntelefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): endereço ou localização da ocorrência; ponto de referência; tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas;"
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e cite o número da evidência, como [1]. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema.\n\nDocumentos consultados:\n[1] telefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): 193 – Corpo de Bombeiros Atende ocorrências como incêndios, acidentes, resgates, salvamentos e outras situações de risco.\n[2] telefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): endereço ou localização da ocorrência; ponto de referência; tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas;"
               },
               {
                 "role": "user",
@@ -330,7 +332,7 @@
               },
               {
                 "role": "assistant",
-                "content": "Ligue 193 agora para o Corpo de Bombeiros e informe que há pessoas presas no carro."
+                "content": "Ligue 193 agora para o Corpo de Bombeiros e informe que há pessoas presas no carro. [1]"
               },
               {
                 "role": "user",
@@ -338,19 +340,21 @@
               },
               {
                 "role": "assistant",
-                "content": "Diga onde está o carro, indique um ponto de referência e informe quantas pessoas estão presas, se souber."
+                "content": "Diga onde está o carro, indique um ponto de referência e informe quantas pessoas estão presas, se souber. [2]"
               }
             ],
             "fonte": "telefones_emergencia.html",
             "tipo": "urgencia",
             "evidencias": [
               {
+                "id": 1,
                 "fonte": "telefones_emergencia.html",
                 "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
                 "pagina": null,
                 "trecho": "193 – Corpo de Bombeiros Atende ocorrências como incêndios, acidentes, resgates, salvamentos e outras situações de risco."
               },
               {
+                "id": 2,
                 "fonte": "telefones_emergencia.html",
                 "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
                 "pagina": null,
@@ -369,7 +373,7 @@
             "messages": [
               {
                 "role": "system",
-                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e indique a fonte. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema.\n\nDocumentos consultados:\ntelefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): 192 – SAMU Serviço de Atendimento Móvel de Urgência, destinado ao atendimento de situações de urgência e emergência médica que necessitem de atendimento especializado.\ntelefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas; estado das vítimas, quando houver;"
+                "content": "Você orienta moradores sobre enchentes e deslizamentos no Brasil. Escreva em português simples, use o histórico e dê uma ação de cada vez. Use os documentos consultados para fatos e cite o número da evidência, como [1]. Se faltarem dados atuais, encaminhe ao órgão responsável. Em risco imediato, indique o canal de emergência de acordo com o caso. Não solicite dados pessoais, não diagnostique e não dê laudos. Recuse com educação pedidos fora do tema.\n\nDocumentos consultados:\n[1] telefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): 192 – SAMU Serviço de Atendimento Móvel de Urgência, destinado ao atendimento de situações de urgência e emergência médica que necessitem de atendimento especializado.\n[2] telefones_emergencia.html (Emergência: você sabe para quem ligar quando precisa de ajuda?): endereço ou localização da ocorrência; ponto de referência; tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas; estado das vítimas, quando houver;"
               },
               {
                 "role": "user",
@@ -377,7 +381,7 @@
               },
               {
                 "role": "assistant",
-                "content": "Ligue 192 agora para o SAMU. Informe que a pessoa está com dificuldade para respirar."
+                "content": "Ligue 192 agora para o SAMU. Informe que a pessoa está com dificuldade para respirar. [1]"
               },
               {
                 "role": "user",
@@ -385,23 +389,25 @@
               },
               {
                 "role": "assistant",
-                "content": "Passe a localização, descreva como o ferimento ocorreu e diga como ela está agora. Siga as orientações da equipe."
+                "content": "Passe a localização, descreva como o ferimento ocorreu e diga como ela está agora. Siga as orientações da equipe. [2]"
               }
             ],
             "fonte": "telefones_emergencia.html",
             "tipo": "urgencia",
             "evidencias": [
               {
+                "id": 1,
                 "fonte": "telefones_emergencia.html",
                 "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
                 "pagina": null,
                 "trecho": "192 – SAMU Serviço de Atendimento Móvel de Urgência, destinado ao atendimento de situações de urgência e emergência médica que necessitem de atendimento especializado."
               },
               {
+                "id": 2,
                 "fonte": "telefones_emergencia.html",
                 "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
                 "pagina": null,
-                "trecho": "tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas; estado das vítimas, quando houver;"
+                "trecho": "endereço ou localização da ocorrência; ponto de referência; tipo de ocorrência; quantidade de pessoas envolvidas ou vítimas; estado das vítimas, quando houver;"
               }
             ],
             "lingua_real": [
@@ -457,11 +463,28 @@
             "pergunta": "BARRANCO TA MEXENDO AO LADO DO SALÃO, ainda dá pra ficar aqui?",
             "resposta_esperada": "Saia agora para um local seguro e avise quem estiver por perto. Acione a Defesa Civil pelo 199 ou os Bombeiros pelo 193.",
             "tipo": "urgencia",
-            "fonte": "periferia_cemaden.pdf",
+            "fonte": [
+              "periferia_cemaden.pdf",
+              "telefones_emergencia.html"
+            ],
             "lingua_real": true,
             "secao": "Monitoramento",
             "pagina": 8,
-            "trecho": "Sempre que essas situações acontecerem, procure um lugar seguro, avise os vizinhos e siga as orientações da Defesa Civil ou do Corpo de Bombeiros."
+            "trecho": "Sempre que essas situações acontecerem, procure um lugar seguro, avise os vizinhos e siga as orientações da Defesa Civil ou do Corpo de Bombeiros.",
+            "evidencias": [
+              {
+                "fonte": "periferia_cemaden.pdf",
+                "secao": "Monitoramento",
+                "pagina": 8,
+                "trecho": "Sempre que essas situações acontecerem, procure um lugar seguro, avise os vizinhos e siga as orientações da Defesa Civil ou do Corpo de Bombeiros."
+              },
+              {
+                "fonte": "telefones_emergencia.html",
+                "secao": "Emergência: você sabe para quem ligar quando precisa de ajuda?",
+                "pagina": null,
+                "trecho": "193 – Corpo de Bombeiros Atende ocorrências como incêndios, acidentes, resgates, salvamentos e outras situações de risco. 199 – Defesa Civil Canal para situações relacionadas a desastres e riscos à população, como enchentes, deslizamentos e áreas de risco."
+              }
+            ]
           }
         },
         {

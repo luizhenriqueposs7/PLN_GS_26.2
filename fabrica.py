@@ -17,7 +17,7 @@ MODELO = "Qwen/Qwen2.5-0.5B-Instruct"
 SISTEMA = (
     "Você orienta moradores sobre enchentes e deslizamentos no Brasil. "
     "Escreva em português simples, use o histórico e dê uma ação de cada vez. "
-    "Use os documentos consultados para fatos e indique a fonte. "
+    "Use os documentos consultados para fatos e cite o número da evidência, como [1]. "
     "Se faltarem dados atuais, encaminhe ao órgão responsável. "
     "Em risco imediato, indique o canal de emergência de acordo com o caso. "
     "Não solicite dados pessoais, não diagnostique e não dê laudos. "
@@ -34,9 +34,20 @@ PII = {
     ),
 }
 NOME_ROTULADO = re.compile(
-    r"(?im)^(?:nome(?: completo)?|atendente|solicitante|responsável)\s*:\s*([^\n;]+)"
+    r"(?im)^(?:nome(?: completo)?|atendente|solicitante|responsável|paciente|morador(?:a)?)\s*:\s*([^\n;]+)"
+)
+NOME_EM_TITULO = re.compile(
+    r"(?i:paciente|morador(?:a)?|atendente|solicitante|responsável)\s+"
+    r"([A-ZÀ-Ý][a-zà-ÿ]+(?:\s+(?:(?:da|das|de|do|dos)\s+)?[A-ZÀ-Ý][a-zà-ÿ]+)+)"
+)
+TELEFONE_ROTULADO = re.compile(
+    r"(?i)(\b(?:telefone|tel\.?|celular|fone|whatsapp)[ \t]*:[ \t]*)"
+    r"(?:\+?55[ .-]?)?(?:(?:\(\d{2}\)|\d{2})[ .-]?)?\d{4,5}[ .-]?\d{4}(?!\d)"
 )
 MARCADORES = re.compile(r"\[(?:CPF|EMAIL|TELEFONE|NOME)\]")
+MARCADOR_LISTA = re.compile(r"^(?:[•▪●◦]+\s*|y\s+)")
+FIM_FRASE = re.compile(r"""[.!?]["')\]]*$""")
+CONTINUACAO_PAGINA = re.compile(r"\b(?:a|ao|as|com|da|das|de|do|dos|e|em|na|no|o|ou|para|por|que)$", re.I)
 
 
 def ler_json(nome):
@@ -59,16 +70,19 @@ def limpar(bruto, ignorar=()):
     texto = texto.replace("\r\n", "\n").replace("\r", "\n")
     texto = re.sub(r"\u00ad[ \t]*\n[ \t]*", "", texto).replace("\u00ad", "")
     texto = "".join(c for c in texto if c in "\n\t" or unicodedata.category(c)[0] != "C")
-    texto = re.sub(r"(?m)^y[ \t]+(?=\S)", "", texto)  # Marcador da fonte gráfica da cartilha do MS.
     texto = re.sub(r"(?<=[^\W\d_])-\s*\n\s*(?=[a-zà-ÿ])", "", texto)
     linhas = []
     for linha in texto.splitlines():
         linha = re.sub(r"[^\S\n]+", " ", linha).strip()
-        linha = linha.lstrip("•▪●◦ ").rstrip()
+        item_lista = MARCADOR_LISTA.match(linha)
+        if item_lista:
+            linha = linha[item_lista.end():].strip()
         if (linha in ignorar or re.fullmatch(r"(?:p[áa]g(?:ina)?\.?\s*)?\d+(?:\s*/\s*\d+)?", linha, re.I)
                 or re.fullmatch(r"(?:https?://|www\.)\S+", linha, re.I)
                 or (linha and linha in linhas)):
             continue
+        if item_lista and linhas and linhas[-1]:
+            linhas.append("")
         linhas.append(linha)
     return re.sub(r"\n{3,}", "\n\n", "\n".join(linhas)).strip()
 
@@ -130,6 +144,7 @@ def extrair(caminho, metadados=None):
 
 def anonimizar(texto, ner, excecoes=()):
     texto = PII["EMAIL"].sub("[EMAIL]", texto)
+    texto = TELEFONE_ROTULADO.sub(r"\1[TELEFONE]", texto)
     texto = PII["CPF"].sub("[CPF]", texto)
     texto = PII["TELEFONE"].sub("[TELEFONE]", texto)
     protegidos = []
@@ -138,6 +153,9 @@ def anonimizar(texto, ner, excecoes=()):
         protegidos.extend((m.start(), m.end())
                           for m in re.finditer(rf"(?<!\w){expressao}(?!\w)", texto, re.I))
     nomes = [(m.start(1), m.end(1)) for m in NOME_ROTULADO.finditer(texto)]
+    titulo = NOME_EM_TITULO.fullmatch(texto)
+    if titulo:
+        nomes.append(titulo.span(1))
     entrada_ner = MARCADORES.sub(lambda m: " " * len(m[0]), texto)
     nomes.extend((ent.start_char, ent.end_char) for ent in ner(entrada_ner).ents if ent.label_ == "PER")
     fim_mascara = len(texto) + 1
@@ -154,17 +172,24 @@ def higienizar(blocos, ner, excecoes, ruídos=()):
     bordas = Counter(l.strip() for _, p, t in blocos if p is not None
                      for l in set(t.strip().splitlines()[:2] + t.strip().splitlines()[-2:]))
     ignorar = set(ruídos) | {l for l, freq in bordas.items() if freq >= 3}
-    return [(s, p, anonimizar(limpar(t, ignorar), ner, excecoes)) for s, p, t in blocos]
+    return [(anonimizar(limpar(s), ner, excecoes) or "Documento",
+             p, anonimizar(limpar(t, ignorar), ner, excecoes)) for s, p, t in blocos]
 
 
-def segmentar(paginas, contar):
+def segmentar(paginas, contar, *, unir_paginas=True):
     unidades = []
     for pagina, texto in paginas:
+        frases = []
         for bloco in re.split(r"\n\s*\n", texto):
             plano = " ".join(bloco.split())
-            for frase in re.split(r'(?<=[.!?;:])\s+(?=[A-ZÀ-Ü0-9“"(\[])', plano):
-                if frase:
-                    unidades.append((pagina, frase))
+            if plano:
+                frases.extend(re.split(r"""(?:(?<=[.!?])|(?<=[.!?]["')\]]))\s+(?=[A-ZÀ-Ü0-9"(\[])""", plano))
+        if unir_paginas and frases and unidades:
+            (inicio, fim), anterior = unidades[-1]
+            if (pagina is not None and fim == pagina - 1 and not FIM_FRASE.search(anterior)
+                    and (frases[0][0].islower() or CONTINUACAO_PAGINA.search(anterior))):
+                unidades[-1] = ((inicio, pagina), f"{anterior} {frases.pop(0)}")
+        unidades.extend(((pagina, pagina), frase) for frase in frases)
     trechos, buffer, tokens, descartados = [], [], 0, 0
     for pagina, frase in unidades:
         tamanho = contar(frase)
@@ -205,7 +230,8 @@ def segmentar(paginas, contar):
         trechos.append(buffer)
     else:
         descartados += len(buffer)
-    return [(" ".join(t for _, t in grupo), grupo[0][0], grupo[-1][0]) for grupo in trechos], descartados
+    return [(" ".join(t for _, t in grupo), grupo[0][0][0], grupo[-1][0][1])
+            for grupo in trechos], descartados
 
 
 def modelo_ner():
@@ -243,7 +269,24 @@ def jsonl_em_memoria(registros):
     return "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in registros)
 
 
-def gerar(destino, tokenizer_path=None, fontes_dir=None):
+def texto_da_fonte(meta, blocos, contar):
+    paginado = bool(blocos and blocos[0][1] is not None)
+    partes = [(p if paginado else i, t) for i, (_, p, t) in enumerate(blocos) if t]
+    trechos, omitidas = segmentar(partes, contar, unir_paginas=paginado)
+    registros = []
+    for texto, inicio, fim in trechos:
+        rotulos = list(dict.fromkeys(s for i, (s, p, t) in enumerate(blocos)
+                                    if t and inicio <= (p if paginado else i) <= fim))
+        registros.append({
+            "text": texto, "fonte": meta["arquivo"], "secao": " / ".join(rotulos),
+            "paginas": [inicio, fim] if paginado else None, "data": meta["data"],
+            "titulo": meta["titulo"], "orgao": meta["orgao"], "url": meta["url"],
+            "tokens": contar(texto),
+        })
+    return registros, omitidas
+
+
+def gerar(destino, tokenizer_path=None, fontes_dir=None, *, novas_fontes=()):
     ner, tok = modelo_ner(), tokenizador(tokenizer_path)
 
     def contar(texto):
@@ -265,14 +308,18 @@ def gerar(destino, tokenizer_path=None, fontes_dir=None):
         blocos = higienizar(blocos_brutos, ner, excecoes + meta.get("preservar", []),
                             meta.get("ignorar", []))
         paginas[fonte] = blocos
-        trechos, descartes[fonte] = segmentar([(p, t) for _, p, t in blocos if t], contar)
-        for texto, inicio, fim in trechos:
-            rotulos = list(dict.fromkeys(s for s, p, _ in blocos
-                                        if p is None or inicio <= p <= fim))
-            corpus_texto.append({"text": texto, "fonte": fonte, "secao": " / ".join(rotulos),
-                                 "paginas": [inicio, fim] if inicio is not None else None,
-                                 "data": meta["data"], "titulo": meta["titulo"],
-                                 "orgao": meta["orgao"], "url": meta["url"], "tokens": contar(texto)})
+        registros, descartes[fonte] = texto_da_fonte(meta, blocos, contar)
+        corpus_texto.extend(registros)
+
+    for meta, blocos_brutos in novas_fontes:
+        meta = {**meta, **{k: anonimizar(meta[k], ner, excecoes)
+                          for k in ("arquivo", "titulo", "orgao")}}
+        fonte = meta["arquivo"]
+        exigir(fonte not in descartes, "As fontes precisam de nomes distintos após a anonimização.")
+        blocos = higienizar(blocos_brutos, ner, excecoes)
+        registros, descartes[fonte] = texto_da_fonte(meta, blocos, contar)
+        exigir(registros, "Cada fonte nova precisa de texto suficiente para um trecho entre 256 e 512 tokens.")
+        corpus_texto.extend(registros)
 
     ficha = RAIZ / "entradas" / "ficha_ficticia.txt"
     antes = ficha.read_text(encoding="utf-8").strip()
@@ -291,12 +338,21 @@ def gerar(destino, tokenizer_path=None, fontes_dir=None):
     teste_bruto = ler_json("teste.json")
     exigir(hashlib.sha256(teste_bruto).hexdigest() == ler_json("teste.sha256").decode().strip(),
            "O conjunto de teste congelado foi alterado.")
+    complementos = json.loads(ler_json("teste_evidencias.json"))
     teste = []
-    for pergunta, resposta, tipo, alias, pagina, trecho, informal in json.loads(teste_bruto):
+    for n, registro in enumerate(json.loads(teste_bruto), 1):
+        pergunta, resposta, tipo, alias, pagina, trecho, informal = registro
         item = {"pergunta": pergunta, "resposta_esperada": resposta, "tipo": tipo,
                 "fonte": None, "lingua_real": informal}
         if alias:
-            item.update(apoio(manifesto["aliases"][alias], pagina, trecho))
+            principal = apoio(manifesto["aliases"][alias], pagina, trecho)
+            item.update(principal)
+            if str(n) in complementos:
+                citacoes = [principal] + [
+                    apoio(manifesto["aliases"][a], p, ancora) for a, p, ancora in complementos[str(n)]
+                ]
+                origens = list(dict.fromkeys(c["fonte"] for c in citacoes))
+                item.update(evidencias=citacoes, fonte=origens[0] if len(origens) == 1 else origens)
         teste.append(item)
 
     qa = []
@@ -307,16 +363,20 @@ def gerar(destino, tokenizer_path=None, fontes_dir=None):
                        **evid, "lingua_real": informal})
 
     chat = []
-    for tipo, perguntas, respostas, evidencias in json.loads(ler_json("chat.json")):
-        citacoes = [apoio(manifesto["aliases"][alias], pagina, trecho)
-                    for alias, pagina, trecho in evidencias]
+    for tipo, perguntas, respostas, evidencias, referencias in json.loads(ler_json("chat.json")):
+        citacoes = [{"id": n, **apoio(manifesto["aliases"][alias], pagina, trecho)}
+                    for n, (alias, pagina, trecho) in enumerate(evidencias, 1)]
         origens = list(dict.fromkeys(c["fonte"] for c in citacoes))
         sistema = SISTEMA
         if citacoes:
             sistema += "\n\nDocumentos consultados:\n" + "\n".join(
-                f'{c["fonte"]} ({c["secao"]}): {c["trecho"]}' for c in citacoes)
+                f'[{c["id"]}] {c["fonte"]} ({c["secao"]}): {c["trecho"]}' for c in citacoes)
         mensagens = [{"role": "system", "content": sistema}]
-        for (pergunta, _), resposta in zip(perguntas, respostas, strict=True):
+        for (pergunta, _), resposta, refs in zip(perguntas, respostas, referencias, strict=True):
+            exigir(bool(refs) == bool(citacoes) and all(1 <= r <= len(citacoes) for r in refs),
+                   "As referências do turno precisam apontar para as evidências numeradas.")
+            if refs:
+                resposta += " " + " ".join(f"[{r}]" for r in refs)
             mensagens.extend([{"role": "user", "content": pergunta},
                               {"role": "assistant", "content": resposta}])
         chat.append({"messages": mensagens, "fonte": origens[0] if len(origens) == 1 else origens or None,
